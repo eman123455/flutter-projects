@@ -3,7 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
 class CounterCubit extends Cubit<CounterStates> {
-  CounterCubit(super.initialState);
+  CounterCubit() : super(CounterAIncrement());
 
   int teamAIncrement = 0;
   int teamBIncrement = 0;
@@ -15,8 +15,13 @@ class CounterCubit extends Cubit<CounterStates> {
         emit(CounterAIncrement());
         break;
       case 'B':
-          teamBIncrement += buttonNumber;
+        teamBIncrement += buttonNumber;
         emit(CounterBIncrement());
+        break;
+      case 'R':
+        teamAIncrement = 0;
+        teamBIncrement = 0;
+        emit(CounterReset());
         break;
     }
   }
